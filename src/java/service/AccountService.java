@@ -5,7 +5,6 @@ import model.User;
 
 public class AccountService implements Serializable {
    
-    
     User user = new User();
     
     public User login(String username, String password) {

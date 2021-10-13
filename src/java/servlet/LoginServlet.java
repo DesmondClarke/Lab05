@@ -7,6 +7,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import model.User;
+import service.AccountService;
 
 public class LoginServlet extends HttpServlet {
 
@@ -29,18 +30,20 @@ public class LoginServlet extends HttpServlet {
        
        session.setAttribute("username", Username);
        
-       System.out.print(Username);
-       System.out.print(Password);
+       Object a = request.getAttribute(Username);
+       
       
        if(Username != null || Username.equals("")){
-        if(Username.equals("abe") || Username.equals("barb") && Password.equals("password")){
+        if(Username.equals("abe") && Password.equals("password") || Username.equals("barb") && Password.equals("password")){
+            //User.login(Username, Password);
            getServletContext().getRequestDispatcher("/WEB-INF/home.jsp").forward(request, response);
         }else {
            getServletContext().getRequestDispatcher("/WEB-INF/login.jsp").forward(request, response);
-           //request.setAttribute("invalidEntry", true);
+           request.setAttribute("invalidEntry", true);
        }
        }
        
             
     }
+
 }
